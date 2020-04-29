@@ -1,0 +1,20 @@
+#!/bin/sh 
+
+INPUT_FILE=$1
+MSG=`head -n1 $INPUT_FILE`
+
+ARRAY_COMMIT=( "ERMES" "TRAJET" "ERMES-TRAJET" "OTHER")
+for i in "${ARRAY_COMMIT[@]}"
+do
+   if [[ $MSG == $i* ]]
+	then	
+		exit 0
+	fi
+   # do whatever on $i
+done
+echo "Your commit message must started with one of these:"
+for i in "${ARRAY_COMMIT[@]}"
+do
+	echo $i
+done
+exit 1
